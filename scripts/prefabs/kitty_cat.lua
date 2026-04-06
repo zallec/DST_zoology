@@ -1,0 +1,50 @@
+local assets = {
+    Asset("ANIM", "anim/kitty_cat.zip"),
+    Asset("ATLAS", "images/kitty_cat_small.xml"),
+    Asset("IMAGE", "images/kitty_cat_small.tex")
+}
+
+local function foo()
+    local inst = CreateEntity()
+
+    inst:SetPrefabName("kitty_cat")
+
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
+    inst.entity:AddNetwork()
+
+    MakeInventoryPhysics(inst)
+
+    -- Anim States --
+    inst.AnimState:SetBank("kitty_cat")
+    inst.AnimState:SetBuild("kitty_cat")
+    inst.AnimState:PlayAnimation("idle")
+
+    -- stackable inventory --
+
+
+    if not TheWorld.ismastersim then
+        return inst
+    end
+
+    -- Components --
+    inst:AddComponent("inspectable")
+
+    inst:AddComponent("inventoryitem")
+    inst.components.inventoryitem.imagename = "kitty_cat_small"
+    inst.components.inventoryitem.atlasname = "images/kitty_cat_small.xml"
+
+    inst:AddComponent("stackable")
+    inst.components.stackable.maxsize = 10 -- change to 1
+
+    inst:AddComponent("huggable")
+    inst.components.huggable:SetSanityGain(15)
+
+
+    
+    
+    return inst
+end
+
+
+return Prefab("kitty_cat", foo, assets);
