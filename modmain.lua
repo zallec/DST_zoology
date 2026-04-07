@@ -35,9 +35,10 @@ local WURT = STRINGS.CHARACTERS.WURT.DESCRIBE
 local WALTER = STRINGS.CHARACTERS.WALTER.DESCRIBE
 local WANDA = STRINGS.CHARACTERS.WANDA.DESCRIBE
 
--- Characters on Examine --
+-- Names of Item --
+NAMES.KITTY_CAT = "Kitty"
 
-NAMES.KITTY_CAT = "Kitty Cat"
+-- Characters on Examine --
 GENERIC.KITTY_CAT = "A cute kitty cat!"
 --WILSON.KITTY_CAT = "Dinner..."
 WILLOW.KITTY_CAT = "A cute kitty cat!"
@@ -68,7 +69,7 @@ AddAction("HUG", "Hug!", function(act)
     return false
 end)
 
--- Huggable Component --
+-- Custom Huggable Component --
 AddComponentAction("INVENTORY", "huggable", function(inst, doer, actions, right)
     if doer.replica.inventory:GetActiveItem() == nil and (doer.replica.rider == nil or not doer.replica.rider:IsRiding()) then
         table.insert(actions, GLOBAL.ACTIONS.HUG)
