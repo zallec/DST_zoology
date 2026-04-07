@@ -1,19 +1,25 @@
 local assets = {
     Asset("ANIM", "anim/kitty_cat.zip"),
+
     Asset("ATLAS", "images/kitty_cat_small.xml"),
     Asset("IMAGE", "images/kitty_cat_small.tex")
 }
 
 local function foo()
     local inst = CreateEntity()
+    local sound = inst.entity:AddSoundEmitter()
 
     inst:SetPrefabName("kitty_cat")
 
     inst.entity:AddTransform()
     inst.entity:AddAnimState()
+    inst.entity:AddSoundEmitter()
     inst.entity:AddNetwork()
 
     MakeInventoryPhysics(inst)
+
+    
+    inst.entity:SetPristine()
 
     -- Anim States --
     inst.AnimState:SetBank("kitty_cat")
@@ -36,6 +42,9 @@ local function foo()
 
     inst:AddComponent("stackable")
     inst.components.stackable.maxsize = 10 -- change to 1
+
+    inst:AddComponent("sanityaura")
+	inst.components.sanityaura.aura = (TUNING.SANITYAURA_SMALL * 0.5)
 
     inst:AddComponent("huggable")
     inst.components.huggable:SetSanityGain(15)
