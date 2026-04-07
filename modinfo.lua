@@ -1,7 +1,7 @@
-name = "zachs_mod"
+name = "kitty_mod"
 description = "mod for enjoyers of animals"
 author = "zallec"
-version = "0.0.1"
+version = "0.0.3"
 
 forumthread = ""
 

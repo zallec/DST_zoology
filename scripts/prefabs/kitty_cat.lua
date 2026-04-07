@@ -25,6 +25,7 @@ local function foo()
     inst.AnimState:SetBank("kitty_cat")
     inst.AnimState:SetBuild("kitty_cat")
     inst.AnimState:PlayAnimation("idle")
+    inst.AnimState:SetScale(1.5, 1.5, 1.5)
 
     -- stackable inventory --
 
